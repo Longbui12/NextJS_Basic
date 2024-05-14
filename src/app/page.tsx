@@ -1,6 +1,7 @@
 import Link from "next/link";
 import x from "@/styles/app.module.css";
 import y from "@/styles/app2.module.css";
+import AppTable from "@/components/app.table";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
           <a href="/youtube">Youtube</a>
         </li>
       </ul>
+      <AppTable />
     </div>
   );
 }

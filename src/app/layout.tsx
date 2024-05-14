@@ -1,6 +1,11 @@
-import "./globals.css";
+"use client";
+// import "./globals.css";
 import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
+import AppHeader from "../components/app.header";
+import Container from "react-bootstrap/Container";
+import AppFooter from "@/components/app.footer";
+// import AppTable from "@/components/app.table";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header style={{ margin: "20px 0" }}>THIS IS MY HEADER</header>
-        {children}
-        <footer style={{ margin: "20px 0" }}>THIS IS MY FOOTER</footer>
+        <AppHeader />
+        <Container>{children}</Container>
+        <AppFooter />
       </body>
     </html>
   );
