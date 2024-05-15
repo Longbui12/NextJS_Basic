@@ -1,9 +1,23 @@
 .red {
     color: red;
     border: 1px solid red;
+    margin: 20px 0px
 }
 
 .green {
     color: green;
     border: 1px solid green;
+    margin: 20px 0px
+}
+
+.orange {
+    color: violet;
+    border: 1px solid violet;
+    margin: 20px 0px
+}
+
+.white {
+    color: navy;
+    border: 1px solid navy;
+    margin: 20px 0px
 }
