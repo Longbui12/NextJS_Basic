@@ -4,23 +4,41 @@ import x from "@/styles/app.module.css";
 import y from "@/styles/app2.module.css";
 import AppTable from "@/components/app.table";
 import { useEffect } from "react";
+import useSWR from "swr";
 
 export default function Home() {
   // const res = fetch("http://localhost:8008/blogs");
   // console.log("Check response : ", res);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch("http://localhost:8008/blogs");
-      // console.log("Check response : ", res.json());
-      const data = await res.json();
-      console.log("check DATA :", data);
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const res = await fetch("http://localhost:8008/blogs");
+  //     // console.log("Check response : ", res.json());
+  //     const data = await res.json();
+  //     console.log("check DATA :", data);
+  //   };
+  //   fetchData();
+  // }, []);
+
+  // Use library useSwr : (Link doc => 'https://swr.vercel.app' )
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  const { data, error, isLoading } = useSWR(
+    "http://localhost:8008/blogs",
+    fetcher,
+    {
+      revalidateIfStale: false,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+    }
+  );
+  console.log("Check data :", data);
+
+  // if (error) return "An error has occurred.";
+  // if (isLoading) return "Loading...";
 
   return (
     <div>
+      <div>{data?.length}</div>
       <ul>
         <li className={x["red"]}>
           <Link href={"/facebook"}>
