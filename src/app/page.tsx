@@ -3,7 +3,7 @@ import Link from "next/link";
 import x from "@/styles/app.module.css";
 import y from "@/styles/app2.module.css";
 import AppTable from "@/components/app.table";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import useSWR from "swr";
 
 export default function Home() {
@@ -36,6 +36,10 @@ export default function Home() {
   // if (error) return "An error has occurred.";
   // if (isLoading) return "Loading...";
 
+  // define for Apptable :
+  if (!data) {
+    return <div>loading...</div>;
+  }
   return (
     <div>
       <div>{data?.length}</div>
@@ -61,7 +65,7 @@ export default function Home() {
           </Link>
         </li>
       </ul>
-      <AppTable />
+      <AppTable blogs={data} />
     </div>
   );
 }
