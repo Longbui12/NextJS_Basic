@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import { toast } from "react-toastify";
 
 interface IProps {
   showModalCreate: boolean;
@@ -16,7 +17,44 @@ function CreateModal(props: IProps) {
   const [content, setContent] = useState<string>("");
 
   const handleSubmit = () => {
-    console.log("CHeck data :", title, author, content);
+    if (!title) {
+      toast.error("Not empty title !");
+      return;
+    }
+    if (!author) {
+      toast.error("Not empty author !");
+      return;
+    }
+    if (!content) {
+      toast.error("Not empty content !");
+      return;
+    }
+    // if (!title || !author || !content) {
+    //   toast.error(
+    //     "You have entered missing information in one of the boxes below, please check again !"
+    //   );
+    //   return;
+    // }
+
+    fetch("http://localhost:8008/blogs", {
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, author, content }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res) {
+          toast.success("Create new a blog succeed !...");
+          handleCloseModal();
+        } else {
+          toast.error("Create failed !...");
+        }
+      });
+    // toast.success("Create succeed !...");
+    // console.log("CHeck data :", title, author, content);
   };
 
   // This funtion to when close Modal will clear data :
