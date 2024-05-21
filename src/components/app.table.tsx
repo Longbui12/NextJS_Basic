@@ -4,16 +4,18 @@ import { Button } from "react-bootstrap";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CreateModal from "./create.modal";
 import { useState } from "react";
-
+import UpdateModal from "./update.modal";
 interface IProps {
   blogs: IBlog[];
 }
 
 function AppTable(props: IProps) {
   const { blogs } = props;
-  console.log(">>>> Check props blogs :", blogs);
-
+  //console.log(">>>> Check props blogs :", blogs);
+  const [blog, setBlog] = useState<IBlog | null>(null);
   const [showModalCreate, setShowModalCreate] = useState<boolean>(false);
+  const [showModalUpdate, setShowModalUpdate] = useState<boolean>(false);
+
   return (
     <>
       <div
@@ -32,22 +34,29 @@ function AppTable(props: IProps) {
             <th>Title</th>
             <th>Author</th>
             <th>Action</th>
-            <th>Content</th>
+            {/* <th>Content</th> */}
           </tr>
         </thead>
         <tbody>
-          {blogs?.map((blog) => {
+          {blogs?.map((item) => {
             return (
-              <tr key={blog.id}>
-                <td>{blog.id}</td>
-                <td>{blog.title}</td>
-                <td>{blog.author}</td>
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.title}</td>
+                <td>{item.author}</td>
                 <td>
                   <ButtonGroup vertical>
                     <Button variant="success" className="my-3">
                       View
                     </Button>
-                    <Button variant="warning" className="my-3">
+                    <Button
+                      variant="warning"
+                      className="my-3"
+                      onClick={() => {
+                        setBlog(item);
+                        setShowModalUpdate(true);
+                      }}
+                    >
                       Edit
                     </Button>
                     <Button variant="danger" className="my-3">
@@ -55,7 +64,7 @@ function AppTable(props: IProps) {
                     </Button>
                   </ButtonGroup>
                 </td>
-                <td>{blog.content}</td>
+                {/* <td>{item.content}</td> */}
               </tr>
             );
           })}
@@ -64,6 +73,12 @@ function AppTable(props: IProps) {
       <CreateModal
         showModalCreate={showModalCreate}
         setShowModalCreate={setShowModalCreate}
+      />
+      <UpdateModal
+        showModalUpdate={showModalUpdate}
+        setShowModalUpdate={setShowModalUpdate}
+        blog={blog}
+        setBlog={setBlog}
       />
     </>
   );
