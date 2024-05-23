@@ -20,10 +20,10 @@ function AppHeader() {
             <Link href={"/"} className="nav-link">
               Home
             </Link>
-            <Link href={"/facebook"} className="nav-link">
-              Facebook
+            <Link href={"/blogs"} className="nav-link">
+              Blogs
             </Link>
-            <Link href={"/tiktok"} className="nav-link">
+            {/* <Link href={"/tiktok"} className="nav-link">
               Tiktok
             </Link>
             <Link href={"/twitter"} className="nav-link">
@@ -31,9 +31,9 @@ function AppHeader() {
             </Link>
             <Link href={"/youtube"} className="nav-link">
               Youtube
-            </Link>
+            </Link> */}
 
-            <Nav.Link href="#link">Link</Nav.Link>
+            {/* <Nav.Link href="#link">Link</Nav.Link> */}
             {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">

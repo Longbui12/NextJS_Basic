@@ -5,6 +5,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import CreateModal from "./create.modal";
 import { useState } from "react";
 import UpdateModal from "./update.modal";
+import Link from "next/link";
 interface IProps {
   blogs: IBlog[];
 }
@@ -46,9 +47,13 @@ function AppTable(props: IProps) {
                 <td>{item.author}</td>
                 <td>
                   <ButtonGroup vertical>
-                    <Button variant="success" className="my-3">
+                    <Link
+                      className="btn btn-success mt-3"
+                      href={`/blogs/${item.id}`}
+                    >
                       View
-                    </Button>
+                    </Link>
+
                     <Button
                       variant="warning"
                       className="my-3"
