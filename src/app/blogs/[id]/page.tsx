@@ -22,10 +22,14 @@ const ViewDetailBlog = ({ params }: { params: { id: string } }) => {
   if (isLoading) {
     return <div>loading...</div>;
   }
+  if (error) {
+    return <div>Failed to load</div>;
+  }
 
   const handleGoBackBlogsPage = () => {
     router.push("/blogs");
   };
+
   return (
     <>
       <div>VIEW DETAIL OF CONTENT BLOG & NAME AUTHOR = {params.id}</div>
