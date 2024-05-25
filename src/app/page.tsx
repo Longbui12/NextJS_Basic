@@ -1,10 +1,15 @@
-"use client";
 import Link from "next/link";
 import x from "@/styles/app.module.css";
 import y from "@/styles/app2.module.css";
-import AppTable from "@/components/app.table";
+// import AppTable from "@/components/app.table";
+import type { Metadata } from "next";
 // import { useEffect } from "react";
 // import useSWR from "swr";
+
+export const metadata: Metadata = {
+  title: "HomePage",
+  description: "Description bla bla ...",
+};
 
 export default function Home() {
   // const res = fetch("http://localhost:8008/blogs");
